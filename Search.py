@@ -55,13 +55,17 @@ def main():
     now = datetime.datetime.now()
 
     # Créer le nom du fichier de sortie.
-    filename = "SearchFile" + "-" + now.strftime("%Y-%m-%d-%H-%M-%S")
+    filename = "SearchFile" + "-" + now.strftime("%Y-%m-%d-%H-%M-%S") + ".txt"
+
+    # Créer le répertoire de sortie si il n'existe pas.
+    if not os.path.exists("OutputLog"):
+        os.mkdir("OutputLog")
 
     # Lister tous les fichiers dans le répertoire courant.
     files = list_files(".")
 
     # Enregistrer les informations sur les fichiers dans un fichier.
-    with open(filename, "w") as f:
+    with open(os.path.join("OutputLog", filename), "w") as f:
         for file in files:
             info = get_file_info(file)
             f.write(f"{info['extension']}\t{info['parent']}\t{info['name']}\n")
