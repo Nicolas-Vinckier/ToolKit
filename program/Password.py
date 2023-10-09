@@ -1,5 +1,22 @@
 import random
 import string
+import os
+import datetime
+
+
+def generate_file():
+    # Créer le dossier OutputLog s'il n'existe pas.
+    if not os.path.exists("OutputLog"):
+        os.mkdir("OutputLog")
+
+    # Créer le nom du fichier de sortie.
+    now = datetime.datetime.now()
+    filename = "Password" + "-" + now.strftime("%Y-%m-%d-%H-%M-%S") + ".txt"
+
+    # Créer le fichier de sortie.
+    filepath = os.path.join("OutputLog", filename)
+    with open(filepath, "w") as file:
+        file.write("Password Generator\n\n")
 
 
 def generate_password(length, use_uppercase, use_lowercase, use_numbers, use_special):
@@ -34,6 +51,7 @@ def user_choice():
 
 
 def main():
+    generate_file()
     user_choice()
 
 
