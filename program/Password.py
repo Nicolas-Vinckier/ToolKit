@@ -10,6 +10,9 @@ def generate_file():
         os.mkdir("OutputLog")
 
 
+output_log_path = os.path.join(os.getcwd(), "OutputLog")
+
+
 def generate_password(length, use_uppercase, use_lowercase, use_numbers, use_special):
     """
     Generates a password with the specified length and character types.
@@ -34,12 +37,9 @@ def write_password_to_file(password):
     now = datetime.datetime.now()
 
     # Create a filename for the password file
-    filename = f"Password[{now.strftime('%Y-%m-%d-%H-%M-%S')}]"
+    filename = f"Password[{now.strftime('%Y-%m-%d-%H-%M-%S')}].txt"
 
     # Write the password to the file
-    output_log_path = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)), "OutputLog"
-    )
     filepath = os.path.join(output_log_path, filename)
     with open(filepath, "w") as file:
         file.write(password)
