@@ -17,6 +17,7 @@ def delete_output_log():
 
         # Supprimer le dossier
         os.rmdir(path)
+        print(f"Le dossier {path} a été supprimé.")
     else:
         print(f"Le dossier {path} n'existe pas.")
 
