@@ -1,6 +1,7 @@
 import os
 import datetime
 
+print(f"Lancement du programme {__file__}")
 
 def list_files(path):
     """
