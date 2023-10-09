@@ -6,12 +6,15 @@ import tqdm
 def lister_fichiers(dossier):
     """Liste tous les fichiers d'un dossier et de ses sous-dossiers."""
     fichiers = []
-    for fichier in os.listdir(dossier):
-        chemin = os.path.join(dossier, fichier)
-        if os.path.isfile(chemin):
-            fichiers.append(chemin)
-        elif os.path.isdir(chemin):
-            fichiers += lister_fichiers(chemin)
+    try:
+        for fichier in os.listdir(dossier):
+            chemin = os.path.join(dossier, fichier)
+            if os.path.isfile(chemin):
+                fichiers.append(chemin)
+            elif os.path.isdir(chemin):
+                fichiers += lister_fichiers(chemin)
+    except PermissionError as e:
+        print(f"Erreur de permission : {e}")
     return fichiers
 
 
@@ -28,25 +31,36 @@ def detecter_doublons(fichiers):
 
 def main():
     """Programme principal."""
-    # Liste tous les fichiers de l'ordinateur
-    fichiers = lister_fichiers(os.getcwd())
+    # Spécifiez le chemin du dossier racine (par exemple, C:)
+    dossier_racine = "C:\\Users\\mrcan"
+
+    print("Recherche des fichiers...")
+    fichiers = lister_fichiers(dossier_racine)
+    print(f"Nombre total de fichiers trouvés : {len(fichiers)}")
 
     # Vérifie si le dossier "OutputLog" existe
     if not os.path.exists("OutputLog"):
+        print("Création du dossier 'OutputLog'...")
         # Crée le dossier "OutputLog"
         os.makedirs("OutputLog")
 
-    # Créé un fichier texte pour les fichiers trouvés
-    with open(os.path.join("OutputLog", "AllFile.txt"), "w") as fichier_sortie:
-        for fichier_path in lister_fichiers(os.getcwd()):
+    # Crée un fichier texte pour les fichiers trouvés
+    print("Création du fichier 'AllFile.txt'...")
+    with open(
+        os.path.join("OutputLog", "AllFile.txt"), "w", encoding="utf-8"
+    ) as fichier_sortie:
+        for fichier_path in fichiers:
             fichier_sortie.write(fichier_path + "\n")
 
-    # Créé un fichier texte pour les fichiers en double
+    # Crée un fichier texte pour les fichiers en double
+    print("Recherche des fichiers en double...")
     doublons = detecter_doublons(fichiers)
     with open(os.path.join("OutputLog", "Doublon.txt"), "w") as fichier_sortie:
         for fichier_path, nombre in doublons.items():
             if nombre > 1:
                 fichier_sortie.write(fichier_path + "\n")
+
+    print("Terminé !")
 
 
 if __name__ == "__main__":
