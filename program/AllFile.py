@@ -37,16 +37,16 @@ def main():
         os.makedirs("OutputLog")
 
     # Créé un fichier texte pour les fichiers trouvés
-    with open(os.path.join("OutputLog", "AllFile.txt"), "w") as fichier:
-        for fichier in lister_fichiers(os.getcwd()):
-            fichier.write(fichier + "\n")
+    with open(os.path.join("OutputLog", "AllFile.txt"), "w") as fichier_sortie:
+        for fichier_path in lister_fichiers(os.getcwd()):
+            fichier_sortie.write(fichier_path + "\n")
 
     # Créé un fichier texte pour les fichiers en double
     doublons = detecter_doublons(fichiers)
-    with open(os.path.join("OutputLog", "Doublon.txt"), "w") as fichier:
-        for fichier, nombre in doublons.items():
+    with open(os.path.join("OutputLog", "Doublon.txt"), "w") as fichier_sortie:
+        for fichier_path, nombre in doublons.items():
             if nombre > 1:
-                fichier.write(fichier + "\n")
+                fichier_sortie.write(fichier_path + "\n")
 
 
 if __name__ == "__main__":
