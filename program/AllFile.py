@@ -18,17 +18,6 @@ def lister_fichiers(dossier):
     return fichiers
 
 
-def detecter_doublons(fichiers):
-    """Détection des fichiers en double."""
-    doublons = {}
-    for fichier in fichiers:
-        if fichier in doublons:
-            doublons[fichier] += 1
-        else:
-            doublons[fichier] = 1
-    return doublons
-
-
 def main():
     """Programme principal."""
     # Spécifiez le chemin du dossier racine (par exemple, C:)
@@ -52,19 +41,12 @@ def main():
         for fichier_path in fichiers:
             fichier_sortie.write(fichier_path + "\n")
 
-    # Crée un fichier texte pour les fichiers en double
-    print("Recherche des fichiers en double...")
-    doublons = detecter_doublons(fichiers)
-    with open(os.path.join("OutputLog", "Doublon.txt"), "w") as fichier_sortie:
-        for fichier_path, nombre in doublons.items():
-            if nombre > 1:
-                fichier_sortie.write(fichier_path + "\n")
-
     print("Terminé !")
 
 
 if __name__ == "__main__":
     # Initialise la barre de progression
+    fichiers = lister_fichiers("C:\\Users\\mrcan")
     progress = tqdm.tqdm(total=len(fichiers))
 
     # Parcours tous les fichiers
