@@ -3,6 +3,7 @@ import datetime
 
 print(f"Lancement du programme {__file__}")
 
+
 def list_files(path):
     """
     Renvoie une liste de tous les fichiers dans un répertoire, y compris les fichiers des sous-répertoires.
