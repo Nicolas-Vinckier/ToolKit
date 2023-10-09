@@ -3,7 +3,10 @@ import sys
 from program import *
 
 
-# liste tous les programmes dans le dossier "program" (du répertoire courant)
+def clear_console():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 def add_programs_to_path():
     path = os.path.dirname(os.path.realpath(__file__))
     path = os.path.join(path, "program")
@@ -28,4 +31,5 @@ def menu():
 
 
 add_programs_to_path()
+clear_console()
 menu()
