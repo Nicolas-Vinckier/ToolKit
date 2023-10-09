@@ -9,15 +9,6 @@ def generate_file():
     if not os.path.exists("OutputLog"):
         os.mkdir("OutputLog")
 
-    # Créer le nom du fichier de sortie.
-    now = datetime.datetime.now()
-    filename = "Password" + "-" + now.strftime("%Y-%m-%d-%H-%M-%S") + ".txt"
-
-    # Créer le fichier de sortie.
-    filepath = os.path.join("OutputLog", filename)
-    with open(filepath, "w") as file:
-        file.write("Password Generator\n\n")
-
 
 def generate_password(length, use_uppercase, use_lowercase, use_numbers, use_special):
     """
@@ -38,6 +29,22 @@ def generate_password(length, use_uppercase, use_lowercase, use_numbers, use_spe
     return password
 
 
+def write_password_to_file(password):
+    # Get the current date and time
+    now = datetime.datetime.now()
+
+    # Create a filename for the password file
+    filename = f"Password[{now.strftime('%Y-%m-%d-%H-%M-%S')}]"
+
+    # Write the password to the file
+    output_log_path = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)), "OutputLog"
+    )
+    filepath = os.path.join(output_log_path, filename)
+    with open(filepath, "w") as file:
+        file.write(password)
+
+
 def user_choice():
     length = int(input("Enter password length: "))
     use_uppercase = input("Use uppercase letters? (y/n): ").lower() == "y"
@@ -48,6 +55,9 @@ def user_choice():
         length, use_uppercase, use_lowercase, use_numbers, use_special
     )
     print("Your password is:", password)
+
+    # Write the password to a file
+    write_password_to_file(password)
 
 
 def main():
