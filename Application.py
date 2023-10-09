@@ -2,6 +2,7 @@ import os
 import sys
 import datetime
 from program import *
+import importlib
 
 
 def clear_console():
@@ -43,7 +44,14 @@ def menu():
         program_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)), "program", f"{program_name}.py"
         )
-        exec(open(program_path, "r").read())
+
+        # Import the program module
+        program_module = importlib.import_module(f"program.{program_name}")
+
+        # Call the main function of the program module
+        program_module.main()
+
+        # Exit the application
         sys.exit()
     else:
         print("Invalid choice.")

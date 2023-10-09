@@ -4,6 +4,7 @@
 
 # Compiled output
 *.log
+program/__pycache__
 
 # OS generated files
 .DS_Store
