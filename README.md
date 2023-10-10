@@ -1,5 +1,16 @@
 # ToolKit
 
+## Installation
+
+Pour installer le toolkit, clonez ce dépôt sur votre ordinateur et exécutez les commandes suivantes :
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+py .\Application.py
+```
+
 ## Description
 
 Ce dépôt contient un toolkit de programmes Python pour diverses tâches, notamment :
