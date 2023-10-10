@@ -21,7 +21,7 @@ def lister_fichiers(dossier):
 def main():
     """Programme principal."""
     # Spécifiez le chemin du dossier racine (par exemple, C:)
-    dossier_racine = "C:\\Users\\mrcan"
+    dossier_racine = "C:\\Users\\"
 
     print("Recherche des fichiers...")
     fichiers = lister_fichiers(dossier_racine)
