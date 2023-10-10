@@ -4,12 +4,10 @@
 
 # Compiled output
 *.log
+__pycache__
 program/__pycache__
+OutputLog/*.*
 
 # OS generated files
 .DS_Store
 Thumbs.db
-
-# random stuff
-dossier
-OutputLog/*.*
