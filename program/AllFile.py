@@ -46,7 +46,7 @@ def main():
 
 if __name__ == "__main__":
     # Initialise la barre de progression
-    fichiers = lister_fichiers("C:\\Users\\mrcan")
+    fichiers = lister_fichiers("")
     progress = tqdm.tqdm(total=len(fichiers))
 
     # Parcours tous les fichiers
